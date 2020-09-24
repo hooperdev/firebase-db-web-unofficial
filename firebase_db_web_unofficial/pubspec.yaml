@@ -1,8 +1,8 @@
-name: firebasedbwebunofficial
+name: firebase_db_web_unofficial
 description: Firebase Database for flutter web apps. UNOFFICIAL.
 version: 0.0.1
-author:
-homepage:
+author: Dayton Square Roots <contact@daytonsquareroots.org>
+homepage: https://github.com/DaytonSquareRoots/firebase-db-web-unofficial.git
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

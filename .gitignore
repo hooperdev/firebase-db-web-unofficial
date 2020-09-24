@@ -19,3 +19,4 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
+firebase_db_web_unofficial/example/web/firebase-init.js

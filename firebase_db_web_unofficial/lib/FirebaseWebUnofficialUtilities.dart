@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:js' as js;
 
-import 'package:flutter/cupertino.dart';
-
 const FUNCTION_PRELIMINARY = "flutterFirebaseDatabaseWeb_";
 class FBDBWUUtilities {
   static String makeJavascriptCallbackID() {

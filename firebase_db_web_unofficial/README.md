@@ -6,7 +6,7 @@ Firebase Database for flutter web apps. (UNOFFICIAL)
 
 This is <b>NOT</b> official in any way shape or form. Dayton Square Roots and its developers are not affiliated with, nor endorsed by Google, Firebase, Flutter, or any other Google associations. This is a temporary solution until an official library is released.
 <br>
-Additional note: Sorting data is not yet suppported. Due to the way that most browsers process JSON data, sorting is impossible. We're currently working on ways to get around this, and will update the code and this readme when we have overcome this limitation.
+Additional note: Sorting data is not yet supported. Due to the way that most browsers process JSON data, sorting is impossible. We're currently working on ways to get around this, and will update the code and this readme when we have overcome this limitation.
 
 ## Installing
 
@@ -15,7 +15,7 @@ Add the following to your `pubspec.yaml` file:
 ```yaml
 dependencies:
 
-  firebase_db_web_unofficial: ^0.0.1
+  firebase_db_web_unofficial: ^0.0.2
 ```
 
 <br>
@@ -23,10 +23,10 @@ dependencies:
 And the following to your `web/index.html` file:
 
 ```html
-  <script src="https://api.daytonsquareroots.org/firebasedatabaseweb/jsclient.js" defer></script>
+  <script src="https://api.daytonsquareroots.org/firebasedatabaseweb/v0.0.2/app.js" defer></script>
 ```
 
-Alternatively, download the app.js file from [GitHub](https://github.com/DaytonSquareRoots/APIs/blob/master/firebasedatabaseweb/jsclient.js), load it into your project, and reference it from your code.
+Alternatively, download the app.js file from [GitHub](https://github.com/DaytonSquareRoots/APIs/blob/master/firebasedatabaseweb), load it into your project, and reference it from your code.
 
 <br>
 

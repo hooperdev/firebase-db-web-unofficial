@@ -5,81 +5,91 @@ import 'package:flutter/material.dart';
 import 'package:firebase_db_web_unofficial/firebasedbwebunofficial.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MainApp());
 }
 
-
-// The default Flutter code, but using reading/writing with Firebase Code.
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-
-
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      title: "Firebase Database Web Demo",
+      home: MainPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
+class MainPage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-
-
-  void _incrementCounter() async {
-    DatabaseSnapshot val = await FirebaseDatabaseWeb.instance.reference().child("test").child("counter").once();
-    FirebaseDatabaseWeb.instance.reference().child("test").child("counter").set(val.value +1);
-  }
-
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-
-        title: Text(widget.title),
+        title: Text("Demo"),
       ),
-      body: Center(
-
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: ListView(
+          children: [
+            RaisedButton(
+              padding: EdgeInsets.only(top: 5),
+              child: Text('Prepare'),
+              onPressed: () {
+                FirebaseDatabaseWeb.instance
+                    .reference()
+                    .child("test")
+                    .child("a")
+                    .set("Click a button to change this to 'hello'");
+                FirebaseDatabaseWeb.instance
+                    .reference()
+                    .child("test")
+                    .child("b")
+                    .set({
+                  "1": "This will be",
+                  "2": "hello world",
+                  "3": "When you click the button"
+                });
+              },
             ),
-            StreamBuilder(
-              stream: FirebaseDatabaseWeb.instance.reference().child("test").child("counter").onValue,
-              builder: (context, snap) {
-                if(snap.hasData) {
-                  DatabaseSnapshot snapshot = snap.data;
-                  return Text(snapshot.value.toString());
-                }
-                else {
-                  return Text("0");
-                }
+            RaisedButton(
+              padding: EdgeInsets.only(top: 5),
+              child: Text('Set test/a = "hello"'),
+              onPressed: () {
+                FirebaseDatabaseWeb.instance
+                    .reference()
+                    .child("test")
+                    .child("a")
+                    .set("Hello");
+              },
+            ),
+            RaisedButton(
+              padding: EdgeInsets.only(top: 5),
+              child: Text('Update test/b = {"1": "Hello", "2": "World!"}'),
+              onPressed: () {
+                FirebaseDatabaseWeb.instance
+                    .reference()
+                    .child("test")
+                    .child("b")
+                    .update({"1": "Hello,", "2": "World!"});
+              },
+            ),
+            RaisedButton(
+              padding: EdgeInsets.only(top: 5),
+              child: Text('Print the value of test in console'),
+              onPressed: () async {
+                DatabaseSnapshot snap = await FirebaseDatabaseWeb.instance
+                    .reference()
+                    .child("test")
+                    .once();
+                print(snap.value);
               },
             )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }

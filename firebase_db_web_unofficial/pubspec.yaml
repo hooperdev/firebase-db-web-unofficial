@@ -1,6 +1,6 @@
 name: firebase_db_web_unofficial
-description: Firebase Database for flutter web apps. UNOFFICIAL.
-version: 0.0.1
+description: Firebase Database for flutter web apps. This is not made or endorsed by Google in any way.
+version: 0.0.2
 author: Dayton Square Roots <contact@daytonsquareroots.org>
 homepage: https://github.com/DaytonSquareRoots/firebase-db-web-unofficial.git
 

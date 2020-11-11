@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:js' as js;
 
-import 'package:firebase_db_web_unofficial/FirebaseWebUnofficialUtilities.dart';
 
 class DatabaseSnapshot {
   js.JsObject object;

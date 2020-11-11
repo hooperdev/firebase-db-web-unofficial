@@ -141,11 +141,17 @@ function flutterFirebaseDatabaseWeb_goOnline() {
 function flutterFirebaseDatabaseWeb_set(ref, value, callbackID) {
    console.log("ref:");
    console.log(ref);
-   firebase.database().ref(ref).set(value).then(()=> {
+   firebase.database().ref(ref).set(JSON.parse(value)).then(()=> {
       runFlutterFirebaseDatabaseWebDartCallback({ "callbackID": callbackID});
    });
 }
 
+function flutterFirebaseDatabaseWeb_update(ref, value, callbackID) {
+console.log(value);
+   firebase.database().ref(ref).update(JSON.parse(value)).then(()=> {
+      runFlutterFirebaseDatabaseWebDartCallback({"callbackID" : callbackID});
+   });
+}
 window.logger = (flutter_value) => {
    console.log({ js_context: this, flutter_value });
 }

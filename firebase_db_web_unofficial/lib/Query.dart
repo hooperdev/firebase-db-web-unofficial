@@ -30,7 +30,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'DatabaseSnapshot.dart';
 import 'FirebaseWebUnofficialUtilities.dart';
-import 'firebasedbwebunofficial.dart';
 import 'dart:js' as js;
 
 const FUNCTION_PRELIMINARY = "flutterFirebaseDatabaseWeb_";
@@ -71,30 +70,40 @@ class Query {
   Stream<DatabaseSnapshot> get onValue => _observe(_EventType.value);
 
 
-/**
- * All these are modifiers that can be added on to the query and (theoretically) infinitely stacked.
- */
-
+  /// Create a query constrained to only return child nodes with a value greater
+  /// than or equal to the given value, using the given orderBy directive or
+  /// priority as default, and optionally only child nodes with a key greater
+  /// than or equal to the given key.
   Query startAt(dynamic value, {String key = ""}) {
     key == ""?  _modifiers.add({"type" : "startAt", "vals" : [value]}) : _modifiers.add({"type" : "startAt", "vals" : [value, key]});
     return this;
   }
 
+  /// Create a query constrained to only return child nodes with a value less
+  /// than or equal to the given value, using the given orderBy directive or
+  /// priority as default, and optionally only child nodes with a key less
+  /// than or equal to the given key.
   Query endAt(dynamic value, {String key = ""}) {
     key == ""?  _modifiers.add({"type" : "endAt", "vals" : [value]}) : _modifiers.add({"type" : "endAt", "vals" : [value, key]});
     return this;
   }
 
+  /// Create a query constrained to only return child nodes with the given
+  /// `value` (and `key`, if provided).
+  ///
+  /// If a key is provided, there is at most one such child as names are unique.
   Query equalTo(dynamic value, {String key = ""}) {
     key == ""?  _modifiers.add({"type" : "equalTo", "vals" : [value]}) : _modifiers.add({"type" : "equalTo", "vals" : [value, key]});
     return this;
   }
 
+  /// Create a query with limit and anchor it to the start of the window.
   Query limitToFirst(int limit) {
     _modifiers.add({"type": "limitToFirst", "vals" : [limit]});
     return this;
   }
 
+  /// Create a query with limit and anchor it to the end of the window.
   Query limitToLast(int limit) {
     _modifiers.add({"type": "limitToLast", "vals" : [limit]});
     return this;
